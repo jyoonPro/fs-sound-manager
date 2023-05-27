@@ -12,7 +12,7 @@ struct AppState(Mutex<AudioServer>);
 #[tauri::command]
 fn greet(state: tauri::State<AppState>, name: &str) -> String {
     let mut state_guard = state.0.lock().unwrap();
-    state_guard.stop();
+    state_guard.stop_server();
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
