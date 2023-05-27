@@ -1,8 +1,8 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::sync::Mutex;
 use crate::server::AudioServer;
+use std::sync::Mutex;
 
 mod server;
 
@@ -19,7 +19,7 @@ fn greet(state: tauri::State<AppState>, name: &str) -> String {
 #[tokio::main]
 async fn main() {
     let mut server = AudioServer::new();
-    server.start(3000);
+    server.start_server(3000);
 
     tauri::Builder::default()
         .manage(AppState(Mutex::new(server)))
